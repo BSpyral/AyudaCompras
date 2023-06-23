@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Despensa {
 
-	protected static byte despensaActual=1;
-	protected byte idDespensa;
-	protected List<Productos> productos=new ArrayList<Productos>();
-	protected List<Byte> cantidadProductos=new ArrayList<Byte>();
-	protected int total;
-	protected String nombreDespensa;
+	private static byte despensaActual=1;
+	private byte idDespensa;
+	private List<Producto> productos=new ArrayList<Producto>();
+	private List<Byte> cantidadProductos=new ArrayList<Byte>();
+	private int total;
+	private String nombreDespensa;
 
 	public Despensa() {
 		idDespensa=despensaActual;
@@ -19,7 +19,7 @@ public class Despensa {
 		nombreDespensa="";
 	}
 	
-	public Despensa(int idDespensa,Productos productos,int cantidad,String nombreDespensa) {
+	public Despensa(int idDespensa,Producto productos,int cantidad,String nombreDespensa) {
 		this.idDespensa = (byte)idDespensa;
 		this.productos.add(productos);
 		this.cantidadProductos.add((byte) cantidad);
@@ -28,12 +28,12 @@ public class Despensa {
 		total=0;
 	}
 	
-	public void anadirProductos(Productos productos,int cantidad) {
+	public void anadirProductos(Producto productos,int cantidad) {
 		this.productos.add(productos);
 		this.cantidadProductos.add((byte) cantidad);
 	}
 	
-	public void eliminarProductos(Productos productos) {
+	public void eliminarProductos(Producto productos) {
 		int index=0;
 				
 		index=this.productos.indexOf(productos);
@@ -41,7 +41,7 @@ public class Despensa {
 		this.cantidadProductos.remove(index);
 	}
 	
-	public void alterarDespensa(Productos productos,int cantidad) {
+	public void alterarDespensa(Producto productos,int cantidad) {
 		int index=0;
 		
 		index=this.productos.indexOf(productos);
@@ -70,18 +70,14 @@ public class Despensa {
 		this.idDespensa =(byte) idDespensa;
 	}
 
-	public List<Productos> getProductos() {
+	public List<Producto> getProductos() {
 		return productos;
 	}
 	
-	public void setProducto(Productos producto) {
-		this.productos.add(producto);
+	public List<Byte> getCantidadProductos() {
+		return cantidadProductos;
 	}
-
-	public void setProductos(List<Productos> productos) {
-		this.productos.addAll(productos);
-	}
-
+	
 	public String getNombreDespensa() {
 		return nombreDespensa;
 	}
@@ -90,14 +86,10 @@ public class Despensa {
 		this.nombreDespensa = nombreDespensa;
 	}
 
-	public int getTotal() {
-		return total;
-	}
-
 	///////mejorar
 	@Override
 	public String toString() {
-		return "Despensa [idDespensa=" + idDespensa + ", productos=" + productos.get(0).nombre + ", cantidadProductos="
+		return "Despensa [idDespensa=" + idDespensa + ", productos=" + productos.get(0).getNombre() + ", cantidadProductos="
 				+ cantidadProductos.get(0).toString() + ", total=" + total +"]";
 	}
 }
